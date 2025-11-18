@@ -1,6 +1,6 @@
 Package: rails-app
 Version: 1.0
-Architecture: amd64
+Architecture: arm64
 Maintainer: Me
 Description: A stock new rails app, packaged as a .deb archive.
 Depends: bundler, ruby, nodejs, sqlite3

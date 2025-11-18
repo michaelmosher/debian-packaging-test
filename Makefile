@@ -1,13 +1,13 @@
 application = rails-app
 version = 0.0.1
 
-build_root_dir = build/$(application)_$(version)-1_amd64
+build_root_dir = build/$(application)_$(version)-1_arm64
 build_dir_prefix = $(build_root_dir)/usr/local/share/$(application)
 
 source_dirs = app bin config db lib public
 source_files = $(shell find $(source_dirs) -type f) config.ru Gemfile Gemfile.lock Rakefile
 
-build/rails-app_$(version)-1_amd64.deb: \
+build/rails-app_$(version)-1_arm64.deb: \
 		$(build_dir_prefix) \
 		$(build_root_dir)/DEBIAN/control \
 		$(build_root_dir)/DEBIAN/postinst \
@@ -16,7 +16,7 @@ build/rails-app_$(version)-1_amd64.deb: \
 		$(build_root_dir)/var/local/$(application)/tmp \
 		$(build_dir_prefix)/vendor/cache \
 		$(addprefix $(build_dir_prefix)/,$(source_files))
-	cd build && dpkg-deb --build --root-owner-group $(application)_$(version)-1_amd64
+	cd build && dpkg-deb --build --root-owner-group $(application)_$(version)-1_arm64
 
 $(build_root_dir)/DEBIAN/control: DEBIAN/control
 	cp -a --parents DEBIAN/control $(build_root_dir)
@@ -44,7 +44,7 @@ $(build_dir_prefix):
 
 .PHONY: install
 install:
-	dpkg -i build/rails-app_$(version)-1_amd64.deb
+	dpkg -i build/rails-app_$(version)-1_arm64.deb
 
 .PHONY: clean
 clean:
